@@ -3,6 +3,9 @@ package chess.piece;
 import chess.Board;
 import chess.Position;
 import chess.moves.MovementGenerator;
+import chess.moves.Movements;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +13,37 @@ import java.util.List;
 /**
  *
  */
-public abstract class Piece implements MovementGenerator {
-    List<MovementGenerator> movements = new ArrayList<>();
+public class Piece {
+    private String name;
+    private MovementGenerator movementGenerator;
 
-    public Piece(MovementGenerator movement, MovementGenerator...movements) {
-        addMovement(movement);
+    public static Piece king() {
+        return new Piece("Kink", Movements.king());
+    }
 
-        for (MovementGenerator move : movements) {
-            addMovement(move);
-        }
+    public static Piece queen() {
+        return new Piece("Queen", Movements.queen());
+    }
+
+    public static Piece bishop() {
+        return new Piece("Bishop", Movements.diagonal());
+    }
+
+    public static Piece tower() {
+        return new Piece("Tower", Movements.cross());
+    }
+
+    public static Piece horse() {
+        return new Piece("Horse", Movements.horse());
+    }
+
+    public Piece(String name, MovementGenerator movementGenerator) {
+        this.name = name;
+        this.movementGenerator = movementGenerator;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean move(Board board, Position initial, Position destiny) {
@@ -27,18 +52,8 @@ public abstract class Piece implements MovementGenerator {
         return positions.contains(destiny);
     }
 
-    @Override
     public List<Position> generate(Board board, Position initial) {
-        List<Position> positions = new ArrayList<>();
-        for (MovementGenerator movement : movements) {
-            positions.addAll(movement.generate(board, initial));
-        }
-        return positions;
+        return movementGenerator != null? movementGenerator.generate(board, initial) : Lists.newArrayList();
     }
 
-    public void addMovement(MovementGenerator move) {
-        if (move != null) {
-            this.movements.add(move);
-        }
-    }
 }

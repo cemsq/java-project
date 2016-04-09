@@ -28,6 +28,23 @@ public class Movements {
         return InstanceHolder.instance(KingMove.class);
     }
 
+    public static MovementGenerator queen() {
+        return InstanceHolder.instance(Queen.class);
+    }
+
+    private static class Queen implements MovementGenerator {
+        public Queen() {
+        }
+
+        @Override
+        public List<Position> generate(Board board, Position initial) {
+            List<Position> generated = cross().generate(board, initial);
+            generated.addAll(diagonal().generate(board, initial));
+
+            return generated;
+        }
+    }
+
     private static class Cross implements MovementGenerator {
         public Cross() {
         }
@@ -46,11 +63,6 @@ public class Movements {
             list.addAll(board.searchByIncrement(initial, 0, -1));
 
             return list;
-        }
-
-        @Override
-        public String getName() {
-            return "Cross";
         }
     }
 
@@ -73,11 +85,6 @@ public class Movements {
 
             return list;
         }
-
-        @Override
-        public String getName() {
-            return "Diagonal";
-        }
     }
 
     private static class LMovement implements MovementGenerator {
@@ -99,11 +106,6 @@ public class Movements {
 
             return list;
         }
-
-        @Override
-        public String getName() {
-            return "LMovement";
-        }
     }
 
     private static class KingMove implements MovementGenerator {
@@ -124,11 +126,6 @@ public class Movements {
             }
 
             return list;
-        }
-
-        @Override
-        public String getName() {
-            return "KingMove";
         }
     }
 }

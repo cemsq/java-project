@@ -12,5 +12,4 @@ public interface MovementGenerator {
 
     List<Position> generate(Board board, Position initial);
 
-    String getName();
 }

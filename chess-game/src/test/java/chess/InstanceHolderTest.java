@@ -1,7 +1,6 @@
 package chess;
 
 import chess.moves.Movements;
-import chess.piece.Bishop;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

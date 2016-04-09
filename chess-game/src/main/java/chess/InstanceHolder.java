@@ -9,7 +9,7 @@ import java.util.Map;
  *
  */
 public class InstanceHolder {
-    private static Map<Class, Object> instances = new HashMap<>();
+    private static Map<Class<?>, Object> instances = new HashMap<>();
 
     public static <T> T instance(Class<T> clazz) {
 
