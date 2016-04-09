@@ -17,6 +17,7 @@
         <module>utils</module>
         <module>working-time</module>
         <module>chess-game</module>
+        <module>head-first</module>
     </modules>
 
     <properties>
