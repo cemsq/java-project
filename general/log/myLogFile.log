@@ -1,0 +1,63 @@
+2016-04-09 11:13:14 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:13:17 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:13:17 INFO  SwapPerformance:35 - common swap: small numbers: 6.0
+2016-04-09 11:13:17 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:13:17 INFO  SwapPerformance:35 - xor    swap: small numbers: 4.0
+2016-04-09 11:13:17 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:13:17 INFO  SwapPerformance:35 - common swap: big   numbers: 1.0
+2016-04-09 11:13:17 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:13:17 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
+2016-04-09 11:14:13 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:14:16 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:14:16 INFO  SwapPerformance:35 - common swap: small numbers: 7.0
+2016-04-09 11:14:16 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:14:16 INFO  SwapPerformance:35 - xor    swap: small numbers: 4.0
+2016-04-09 11:14:16 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:14:16 INFO  SwapPerformance:35 - common swap: big   numbers: 0.0
+2016-04-09 11:14:16 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:14:16 INFO  SwapPerformance:35 - xor    swap: big   numbers: 0.0
+2016-04-09 11:17:10 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:17:11 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:17:13 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:13 INFO  SwapPerformance:35 - common swap: small numbers: 7.0
+2016-04-09 11:17:13 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:13 INFO  SwapPerformance:35 - xor    swap: small numbers: 5.0
+2016-04-09 11:17:13 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:13 INFO  SwapPerformance:35 - common swap: big   numbers: 1.0
+2016-04-09 11:17:13 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:13 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
+2016-04-09 11:17:15 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:15 INFO  SwapPerformance:35 - common swap: small numbers: 6.0
+2016-04-09 11:17:15 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:15 INFO  SwapPerformance:35 - xor    swap: small numbers: 6.0
+2016-04-09 11:17:15 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:15 INFO  SwapPerformance:35 - common swap: big   numbers: 3.0
+2016-04-09 11:17:15 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:17:15 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
+2016-04-09 11:18:52 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:18:54 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:18:54 INFO  SwapPerformance:35 - common swap: small numbers: 6.0
+2016-04-09 11:18:54 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:18:54 INFO  SwapPerformance:35 - xor    swap: small numbers: 4.0
+2016-04-09 11:18:54 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:18:54 INFO  SwapPerformance:35 - common swap: big   numbers: 1.0
+2016-04-09 11:18:54 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:18:54 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
+2016-04-09 11:19:22 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 11:19:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:19:25 INFO  SwapPerformance:35 - common swap: small numbers: 5.0
+2016-04-09 11:19:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:19:25 INFO  SwapPerformance:35 - xor    swap: small numbers: 4.0
+2016-04-09 11:19:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:19:25 INFO  SwapPerformance:35 - common swap: big   numbers: 1.0
+2016-04-09 11:19:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 11:19:25 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
+2016-04-09 21:22:22 INFO  SwapPerformance:20 - ---------------------------------------------------------
+2016-04-09 21:22:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 21:22:25 INFO  SwapPerformance:35 - common swap: small numbers: 5.0
+2016-04-09 21:22:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 21:22:25 INFO  SwapPerformance:35 - xor    swap: small numbers: 4.0
+2016-04-09 21:22:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 21:22:25 INFO  SwapPerformance:35 - common swap: big   numbers: 1.0
+2016-04-09 21:22:25 INFO  SwapPerformance:30 - iterations: 1000000
+2016-04-09 21:22:25 INFO  SwapPerformance:35 - xor    swap: big   numbers: 1.0
