@@ -1,10 +1,8 @@
 package cem.es;
 
 import com.google.common.collect.Lists;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
-import org.elasticsearch.node.NodeBuilder;
 
 import java.util.List;
 
@@ -20,36 +18,56 @@ public class Search {
         QueryStep step2;
         QueryStep step1;
 
+        // ======================================
+        //  simple text & categoryId
+        // ======================================
         step1 = new QueryStep(null);
         step2 = new QueryStep(null);
         step3 = new QueryStep(null);
         step1.setNext(step2);
         step2.setNext(step3);
+        step3.setNext(null);
         byText = step1;
 
-        step1 = new QueryStep(fields("id", "type"), (parameter) -> {
-            TermQueryBuilder idQuery = termQuery("id", parameter.identification);
-            TermQueryBuilder typeQuery = termQuery("type", parameter.type);
-            return boolQuery().must(idQuery).must(typeQuery);
-        });
-        step2 = new QueryStep(fields("id", "type"), parameter -> {
-            TermQueryBuilder idQuery = termQuery("id", parameter.identification);
-            TermQueryBuilder typeQuery = termQuery("type", parameter.type);
-            return boolQuery().must(idQuery).must(typeQuery);
-        });
-        step3 = new QueryStep(parameter -> null);
+        // ======================================
+        //  GTIN & PZN
+        // ======================================
+        step1 = new QueryStep(
+                fields("id", "type"),
+                (parameter) -> {
+                    TermQueryBuilder idQuery = termQuery("id", parameter.identification);
+                    TermQueryBuilder typeQuery = termQuery("type", parameter.type);
+                    return boolQuery().must(idQuery).must(typeQuery);
+                });
+        step2 = new QueryStep(
+                fields("id", "type"),
+                parameter -> {
+                    TermQueryBuilder idQuery = termQuery("id", parameter.identification);
+                    TermQueryBuilder typeQuery = termQuery("itemNumber", parameter.type);
+                    return boolQuery().should(idQuery).should(typeQuery).minimumNumberShouldMatch(1);
+                });
+        step3 = new QueryStep(
+                fields("id", "itemNumber"),
+                parameter ->
+                        multiMatchQuery(parameter.identification, "id", "itemNumber"));
         step1.setNext(step2);
         step2.setNext(step3);
         gtin_pzn_step = step1;
 
-
-        step1 = new QueryStep(fields("id", "type"), parameter -> {
-            MatchQueryBuilder idQuery = matchQuery("id", parameter.identification);
-            TermQueryBuilder typeQuery = termQuery("type", parameter.type);
-            return boolQuery().must(idQuery).must(typeQuery);
-        });
-        step2 = new QueryStep(fields("id", "itemNumber"), parameter ->
-                multiMatchQuery(parameter.identification, "id", "itemNumber"));
+        // ======================================
+        //  HIBC
+        // ======================================
+        step1 = new QueryStep(
+                fields("id", "type"),
+                parameter -> {
+                    MatchQueryBuilder idQuery = matchQuery("id", parameter.identification);
+                    TermQueryBuilder typeQuery = termQuery("type", parameter.type);
+                    return boolQuery().must(idQuery).must(typeQuery);
+                });
+        step2 = new QueryStep(
+                fields("id", "itemNumber"),
+                parameter ->
+                        multiMatchQuery(parameter.identification, "id", "itemNumber"));
         step1.setNext(step2);
         hibc_step = step1;
     }
