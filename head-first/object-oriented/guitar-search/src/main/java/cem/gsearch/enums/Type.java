@@ -1,3 +1,5 @@
+package cem.gsearch.enums;
+
 /**
  *
  */

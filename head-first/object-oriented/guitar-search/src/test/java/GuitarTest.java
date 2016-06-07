@@ -1,3 +1,6 @@
+import cem.gsearch.enums.Builder;
+import cem.gsearch.enums.Type;
+import cem.gsearch.enums.Wood;
 import org.testng.annotations.Test;
 
 import java.util.List;

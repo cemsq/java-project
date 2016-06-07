@@ -18,6 +18,8 @@
         <module>working-time</module>
         <module>chess-game</module>
         <module>head-first</module>
+        <module>data-structure</module>
+        <module>elasticsearch</module>
     </modules>
 
     <properties>
