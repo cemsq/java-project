@@ -8,6 +8,8 @@ public class Main {
         //File file = GetFromResources.file("testText.txt");
         //File file = new File("sdf");
 
+        // a fix
+
         System.out.println(FileResources.getFileName("testText.txt"));
     }
 }
