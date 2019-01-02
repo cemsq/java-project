@@ -33,14 +33,6 @@ public class Board {
     }
 
     public boolean isValid(int i, int j) {
-        return isInRange(i, j);
-    }
-
-    public boolean isInRange(Position pos) {
-        return isInRange(pos.getI(), pos.getJ());
-    }
-
-    public boolean isInRange(int i, int j) {
         return i>=0 && i<m && j>=0 && j<n;
     }
 
