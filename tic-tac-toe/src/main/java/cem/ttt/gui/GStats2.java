@@ -1,4 +1,6 @@
-package cem.ttt;
+package cem.ttt.gui;
+
+import cem.ttt.Player;
 
 import javax.swing.*;
 import java.awt.*;

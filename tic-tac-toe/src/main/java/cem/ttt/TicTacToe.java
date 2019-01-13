@@ -5,7 +5,6 @@ import cem.ttt.gui.JStats;
 import cem.ttt.gui.listener.MouseReleased;
 import cem.ttt.gui.listener.ResizeComponentListener;
 import cem.ttt.ia.BoardEvaluator;
-import cem.ttt.ia.DummyIA;
 import cem.ttt.ia.IAStrategy;
 import cem.ttt.ia.MiniMax;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +17,8 @@ import java.awt.*;
 public class TicTacToe extends JPanel {
 
     private static final Color BOARD_COLOR = new Color(0, 15, 12);
-    public static final double SQUARE_TEXT_PERCENT = .8;
-    public static final int EMPTY_PANEL_SIZE = 100;
+    private static final double SQUARE_TEXT_PERCENT = .8;
+    private static final int EMPTY_PANEL_SIZE = 100;
 
     private int labelSize;
     private static final BoardEvaluator evaluator = new BoardEvaluator();
@@ -59,7 +58,7 @@ public class TicTacToe extends JPanel {
         return panel;
     }
 
-    public TicTacToe(TicTacToeBoard board, int with, int height, IAStrategy iaStrategy) {
+    private TicTacToe(TicTacToeBoard board, int with, int height, IAStrategy iaStrategy) {
         this.ticTacToeBoard = board;
         this.iaStrategy = iaStrategy;
         this.setBackground(BOARD_COLOR);
@@ -76,16 +75,12 @@ public class TicTacToe extends JPanel {
             int column = e.getX() / squareWith;
 
             if (board.isEmpty(row, column)) {
-                log.info("Player {} moves: [{}][{}]", board.getCurrentPlayer().getPlayerValue(), row, column);
                 Move move = new Move(row, column);
-                board.makeMove(move);
-                repaintBoard();
+                boolean gameOver = makeMove(board, move);
 
-                if (!checkGameOver()) {
-                    Move iaMove = iaStrategy.bestMove(board);
-                    board.makeMove(iaMove);
-                    repaintBoard();
-                    checkGameOver();
+                if (!gameOver) {
+                    move = iaStrategy.bestMove(board);
+                    makeMove(board, move);
                 }
             }
         }));
@@ -102,6 +97,14 @@ public class TicTacToe extends JPanel {
                 this.add(jLabel, BorderLayout.CENTER);
             }
         }
+    }
+
+    private boolean makeMove(TicTacToeBoard board, Move move) {
+        log.info("Player {} moves: {}", board.getCurrentPlayer().getPlayerValue(), move);
+        board.makeMove(move);
+        repaintBoard();
+
+        return checkGameOver();
     }
 
     private boolean checkGameOver() {
@@ -130,7 +133,7 @@ public class TicTacToe extends JPanel {
     }
 
     private void repaintBoard() {
-        log.info("Repainting Board...");
+        log.debug("Repainting Board...");
 
         int newLabelSize = getNewLabelSize();
         boolean resizeLabel = newLabelSize != this.labelSize;
@@ -174,7 +177,7 @@ public class TicTacToe extends JPanel {
         }
     }
 
-    public int getNewLabelSize() {
+    private int getNewLabelSize() {
         JLabel jLabel = matrix[0][0];
         return (int)Math.floor(Math.min(jLabel.getWidth(), jLabel.getHeight()) * SQUARE_TEXT_PERCENT);
     }
