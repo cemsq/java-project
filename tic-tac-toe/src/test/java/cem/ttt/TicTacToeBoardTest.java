@@ -15,7 +15,7 @@ public class TicTacToeBoardTest {
         Player pO = Player.pO();
 
         TicTacToeBoard board = new TicTacToeBoard(pX, pO);
-        board.makeMove(new Move(0, 0));
+        board.applyMove(new Move(0, 0));
 
         String expected = new StringJoiner("\n")
                 .add("[X][ ][ ]")
@@ -34,7 +34,7 @@ public class TicTacToeBoardTest {
         Player pO = Player.pO();
 
         TicTacToeBoard board = new TicTacToeBoard(pX, pO);
-        board.makeMove(new Move(-1, 0));
+        board.applyMove(new Move(-1, 0));
 
         String expected = new StringJoiner("\n")
                 .add("[ ][ ][ ]")
@@ -53,10 +53,10 @@ public class TicTacToeBoardTest {
         Player pO = Player.pO();
 
         TicTacToeBoard board = new TicTacToeBoard(pX, pO);
-        board.makeMove(new Move(0, 0));
+        board.applyMove(new Move(0, 0));
 
         Move oMove = new Move(1, 1);
-        board.makeMove(oMove);
+        board.applyMove(oMove);
 
         board.undoMove(oMove);
         String expected = new StringJoiner("\n")
@@ -76,9 +76,9 @@ public class TicTacToeBoardTest {
         Player pO = Player.pO();
 
         TicTacToeBoard board = new TicTacToeBoard(pX, pO);
-        board.makeMove(new Move(0, 0));
-        board.makeMove(new Move(1, 1));
-        board.makeMove(new Move(2, 2));
+        board.applyMove(new Move(0, 0));
+        board.applyMove(new Move(1, 1));
+        board.applyMove(new Move(2, 2));
 
         String expected = "1, 2, 3, 5, 6, 7";
         List<Move> possibleMoves = board.getPossibleMoves();

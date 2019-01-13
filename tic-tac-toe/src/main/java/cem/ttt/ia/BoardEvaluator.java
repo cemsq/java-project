@@ -1,24 +1,29 @@
 package cem.ttt.ia;
 
 import cem.ttt.TicTacToeBoard;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 import java.util.function.Function;
 
 public class BoardEvaluator {
 
-    private final List<Function<TicTacToeBoard, Integer>> evaluators = Lists.newArrayList();
+    private static final List<Function<TicTacToeBoard, Integer>> evaluators;
+    static {
+        evaluators = ImmutableList.<Function<TicTacToeBoard, Integer>>builder()
+                .add(b -> checkRow(b, 0))
+                .add(b -> checkRow(b, 1))
+                .add(b -> checkRow(b, 2))
+                .add(b -> checkColumn(b, 0))
+                .add(b -> checkColumn(b, 1))
+                .add(b -> checkColumn(b, 2))
+                .add(BoardEvaluator::checkPrimaryDiagonal)
+                .add(BoardEvaluator::checkSecondaryDiagonal)
+                .build();
+    }
 
     public BoardEvaluator() {
-        evaluators.add(b -> checkRow(b, 0));
-        evaluators.add(b -> checkRow(b, 1));
-        evaluators.add(b -> checkRow(b, 2));
-        evaluators.add(b -> checkColumn(b, 0));
-        evaluators.add(b -> checkColumn(b, 1));
-        evaluators.add(b -> checkColumn(b, 2));
-        evaluators.add(this::checkPrimaryDiagonal);
-        evaluators.add(this::checkSecondaryDiagonal);
+
     }
 
     public int evaluate(TicTacToeBoard board) {
@@ -32,40 +37,31 @@ public class BoardEvaluator {
         return 0;
     }
 
-    private int checkSecondaryDiagonal(TicTacToeBoard board) {
-        return check(board, 2, 0, -1, 1);
-    }
+    private static int checkRow(TicTacToeBoard board, int initRow) { return check(board, initRow, 0, 0, 1); }
 
-    private int checkPrimaryDiagonal(TicTacToeBoard board) {
-        return check(board, 0, 0, 1, 1);
-    }
+    private static int checkColumn(TicTacToeBoard board, int initColumn) { return check(board, 0, initColumn, 1, 0); }
 
-    private int checkRow(TicTacToeBoard board, int iRow) {
-        return check(board, iRow, 0, 0, 1);
-    }
+    private static int checkPrimaryDiagonal(TicTacToeBoard board) { return check(board, 0, 0, 1, 1); }
 
-    private int checkColumn(TicTacToeBoard board, int iColumn) {
-        return check(board, 0, iColumn, 1, 0);
-    }
+    private static int checkSecondaryDiagonal(TicTacToeBoard board) { return check(board, 2, 0, -1, 1); }
 
-    private int check(TicTacToeBoard board, int iRow, int iColumn, int dRow, int dColumn) {
+    private static int check(TicTacToeBoard board, int initRow, int initColumn, int deltaRow, int deltaColumn) {
 
-        board.value(iRow, iColumn);
-        if (board.isEmpty(iRow, iColumn)) {
+        if (board.isEmpty(initRow, initColumn)) {
             return 0;
         }
 
-        int row = iRow;
-        int column = iColumn;
-        int value = board.value(iRow, iColumn);
-        for (int iteration = 1; iteration <= 2; iteration++) {
-            row += dRow;
-            column += dColumn;
-            if (value != board.value(row, column)) {
+        int row = initRow;
+        int column = initColumn;
+        int playerValue = board.value(initRow, initColumn);
+        for (int iteration = 0; iteration < 2; iteration++) {
+            row += deltaRow;
+            column += deltaColumn;
+            if (playerValue != board.value(row, column)) {
                 return 0;
             }
         }
 
-        return value == 1? 1 : -1;
+        return playerValue == 1? 1 : -1;
     }
 }

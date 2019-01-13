@@ -42,7 +42,7 @@ public class TicTacToeBoard {
         this.opponent = temp;
     }
 
-    public void makeMove(Move move) {
+    public void applyMove(Move move) {
         if (isValid(move.getRow(), move.getColumn()) && isEmpty(move.getRow(), move.getColumn())) {
             put(move.getRow(), move.getColumn(), getCurrentPlayer().getPlayerValue());
             switchPLayer();

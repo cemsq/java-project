@@ -6,7 +6,7 @@ import cem.ttt.gui.listener.MouseReleased;
 import cem.ttt.gui.listener.ResizeComponentListener;
 import cem.ttt.ia.BoardEvaluator;
 import cem.ttt.ia.IAStrategy;
-import cem.ttt.ia.MiniMax;
+import cem.ttt.ia.MiniMax2;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class TicTacToe extends JPanel {
         Player pO = Player.pO();
 
         TicTacToeBoard board = new TicTacToeBoard(pX, pO);
-        TicTacToe ticTacToe = new TicTacToe(board, 300, 300, new MiniMax(evaluator));
+        TicTacToe ticTacToe = new TicTacToe(board, 300, 300, new MiniMax2(evaluator));
 
         JStats xStats = new JStats(pX, 150);
         JStats oStats = new JStats(pO, 150);
@@ -101,7 +101,7 @@ public class TicTacToe extends JPanel {
 
     private boolean makeMove(TicTacToeBoard board, Move move) {
         log.info("Player {} moves: {}", board.getCurrentPlayer().getPlayerValue(), move);
-        board.makeMove(move);
+        board.applyMove(move);
         repaintBoard();
 
         return checkGameOver();
@@ -127,6 +127,7 @@ public class TicTacToe extends JPanel {
     }
 
     private void showDialogAndReset(String text) {
+        log.info(text);
         JOptionPane.showMessageDialog(this, text);
         this.ticTacToeBoard.reset();
         this.repaintBoard();

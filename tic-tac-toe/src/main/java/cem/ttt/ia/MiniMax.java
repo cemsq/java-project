@@ -23,7 +23,7 @@ public class MiniMax implements IAStrategy {
 
         Move bestMove = null;
         for (Move move : board.getPossibleMoves()) {
-            board.makeMove(move);
+            board.applyMove(move);
 
             int value = minMax(board);
             if (maxNode) {
@@ -65,9 +65,9 @@ public class MiniMax implements IAStrategy {
         int max = Integer.MIN_VALUE;
 
         boolean maxNode = isMaxNode(board);
-        for (Move move : board.getPossibleMoves()) {
+        for (Move move : possibleMoves) {
 
-            board.makeMove(move);
+            board.applyMove(move);
             int miniMax = minMax(board);
             board.undoMove(move);
 
